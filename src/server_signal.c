@@ -6,13 +6,12 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:53:37 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 17:14:42 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 19:01:30 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include "minitalk.h"
 #include "libft.h"
 
@@ -28,13 +27,6 @@ static void	server_reset_state(void)
 {
 	server_reset_byte();
 	g_server.client_pid = 0;
-}
-
-static void	die_install(void)
-{
-	write(2, "minitalk: failed to install signal handlers\n",
-		sizeof("minitalk: failed to install signal handlers\n") - 1);
-	exit(1);
 }
 
 static void	server_signal_handler(int sig, siginfo_t *info, void *ucontext)
@@ -72,14 +64,10 @@ void	server_install_handlers(void)
 	ft_bzero(&sa, sizeof(sa));
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = server_signal_handler;
-	if (sigemptyset(&sa.sa_mask) == -1)
-		die_install();
-	if (sigaddset(&sa.sa_mask, SIGUSR1) == -1)
-		die_install();
-	if (sigaddset(&sa.sa_mask, SIGUSR2) == -1)
-		die_install();
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-		die_install();
-	if (sigaction(SIGUSR2, &sa, NULL) == -1)
-		die_install();
+	if (sigemptyset(&sa.sa_mask) == -1
+		|| sigaddset(&sa.sa_mask, SIGUSR1) == -1
+		|| sigaddset(&sa.sa_mask, SIGUSR2) == -1
+		|| sigaction(SIGUSR1, &sa, NULL) == -1
+		|| sigaction(SIGUSR2, &sa, NULL) == -1)
+		fatal("minitalk: failed to install signal handlers");
 }
