@@ -6,7 +6,7 @@
 #    By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/31 21:45:04 by amtan             #+#    #+#              #
-#    Updated: 2026/01/02 22:51:18 by amtan            ###   ########.fr        #
+#    Updated: 2026/01/02 22:54:42 by amtan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC_CLIENT_MANDATORY = \
 	$(SRC_DIR)/client_send.c
 
 SRC_COMMON_BONUS = \
-	$(SRC_BONUS_DIR)/protocol_bits.c \
+	$(SRC_DIR)/protocol_bits.c \
 	$(SRC_DIR)/utils.c
 
 SRC_SERVER_BONUS = \
