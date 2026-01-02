@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:50:37 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 14:48:08 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 19:39:31 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	main(void)
 	pid_t	pid;
 
 	pid = getpid();
-	ft_printf("%d\n", (int)pid);
 	server_install_handlers();
+	ft_printf("%d\n", (int)pid);
 	while (1)
 		pause();
 	return (0);
 }
-
