@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:48:24 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 16:30:40 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 19:36:52 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ unsigned char	set_bit(unsigned char byte, int bit_index, int bit_value)
 	if (bit_value != 0)
 		byte = (unsigned char)(byte | mask);
 	else
-		byte = (unsigned char)(byte & (unsigned char) ~mask);
+		byte = (unsigned char)(byte & (unsigned char)(~mask));
 	return (byte);
 }
