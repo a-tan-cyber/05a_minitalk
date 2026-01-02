@@ -6,12 +6,13 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:52:09 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:45:47 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 21:49:49 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include "minitalk.h"
+
+#include <signal.h>
 
 int	main(int argc, char **argv)
 {

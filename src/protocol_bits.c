@@ -6,12 +6,13 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:48:24 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:45:36 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 21:49:27 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include "minitalk.h"
+
+#include <signal.h>
 
 int	bit_from_signal(int sig)
 {

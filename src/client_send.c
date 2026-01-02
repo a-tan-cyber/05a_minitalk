@@ -6,13 +6,14 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:54:01 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:45:42 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 21:49:40 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
+
 #include <signal.h>
 #include <unistd.h>
-#include "minitalk.h"
 
 #define CLIENT_SEND_DELAY_US 200
 

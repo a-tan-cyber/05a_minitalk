@@ -6,12 +6,14 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:50:37 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:45:34 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 21:49:18 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "minitalk.h"
+
+#include <unistd.h>
+
 #include "libft.h"
 
 int	main(void)

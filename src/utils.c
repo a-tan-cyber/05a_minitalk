@@ -6,13 +6,15 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:49:30 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:54:13 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 21:48:52 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <limits.h>
 #include "minitalk.h"
+
+#include <limits.h>
+#include <stdlib.h>
+
 #include "libft.h"
 
 int	parse_pid(const char *s)
