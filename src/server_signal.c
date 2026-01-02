@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:53:37 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 21:49:06 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/02 22:47:33 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 
 #include "libft.h"
 
-static t_server_state	g_server;
+static t_server_state	g_svr;
 
 static void	server_reset_byte(void)
 {
-	g_server.current_byte = 0;
-	g_server.bit_index = 0;
+	g_svr.current_byte = 0;
+	g_svr.bit_index = 0;
 }
 
 static void	server_reset_state(void)
 {
 	server_reset_byte();
-	g_server.client_pid = 0;
+	g_svr.client_pid = 0;
 }
 
 static void	server_signal_handler(int sig, siginfo_t *info, void *ucontext)
@@ -39,23 +39,22 @@ static void	server_signal_handler(int sig, siginfo_t *info, void *ucontext)
 
 	(void)ucontext;
 	sender_pid = info->si_pid;
-	if (g_server.client_pid != 0 && g_server.client_pid != sender_pid)
+	if (g_svr.client_pid != 0 && g_svr.client_pid != sender_pid)
 		server_reset_byte();
-	g_server.client_pid = sender_pid;
+	g_svr.client_pid = sender_pid;
 	bit = bit_from_signal(sig);
 	if (bit == -1)
 		return ;
-	g_server.current_byte = set_bit(g_server.current_byte,
-			7 - g_server.bit_index, bit);
-	g_server.bit_index++;
-	if (g_server.bit_index != 8)
+	g_svr.current_byte = set_bit(g_svr.current_byte, 7 - g_svr.bit_index, bit);
+	g_svr.bit_index++;
+	if (g_svr.bit_index != 8)
 		return ;
-	c = g_server.current_byte;
+	c = g_svr.current_byte;
 	if (c != '\0')
 		write(1, &c, 1);
 	server_reset_byte();
 	if (c == '\0')
-		g_server.client_pid = 0;
+		g_svr.client_pid = 0;
 }
 
 void	server_install_handlers(void)
