@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_main.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/31 21:50:37 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 19:45:34 by amtan            ###   ########.fr       */
+/*   Created: 2025/12/31 21:49:30 by amtan             #+#    #+#             */
+/*   Updated: 2026/01/02 19:54:13 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 #include "minitalk.h"
 #include "libft.h"
 
-int	main(void)
+int	parse_pid(const char *s)
 {
-	pid_t	pid;
+	long	n;
+	int		i;
 
-	pid = getpid();
-	server_install_handlers();
-	ft_printf("%d\n", (int)pid);
-	while (1)
-		pause();
-	return (0);
+	if (s == NULL || s[0] == '\0')
+		return (-1);
+	n = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (-1);
+		n = (n * 10) + (s[i] - '0');
+		if (n > INT_MAX)
+			return (-1);
+		i++;
+	}
+	if (n <= 0)
+		return (-1);
+	return ((int)n);
+}
+
+void	fatal(char *msg)
+{
+	ft_putendl_fd(msg, 2);
+	exit(1);
 }
