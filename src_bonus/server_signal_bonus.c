@@ -6,11 +6,11 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 22:37:24 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 22:56:02 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/03 11:23:46 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "minitalk.h"
 
 #include <signal.h>
 #include <unistd.h>
@@ -33,15 +33,15 @@ static void	server_reset_state(void)
 
 static void	server_signal_handler(int sig, siginfo_t *info, void *ucontext)
 {
-	pid_t			sender;
+	pid_t			sender_pid;
 	int				bit;
 	unsigned char	c;
 
 	(void)ucontext;
-	sender = info->si_pid;
-	if (g_svr.client_pid != 0 && sender != g_svr.client_pid)
+	sender_pid = info->si_pid;
+	if (g_svr.client_pid != 0 && g_svr.client_pid != sender_pid)
 		server_reset_state();
-	g_svr.client_pid = sender;
+	g_svr.client_pid = sender_pid;
 	bit = bit_from_signal(sig);
 	g_svr.current_byte = set_bit(g_svr.current_byte, 7 - g_svr.bit_index, bit);
 	g_svr.bit_index++;
@@ -54,10 +54,10 @@ static void	server_signal_handler(int sig, siginfo_t *info, void *ucontext)
 		if (c == '\0')
 		{
 			g_svr.client_pid = 0;
-			kill(sender, SIGUSR2);
+			kill(sender_pid, SIGUSR2);
 		}
 	}
-	kill(sender, SIGUSR1);
+	kill(sender_pid, SIGUSR1);
 }
 
 void	server_install_handlers(void)

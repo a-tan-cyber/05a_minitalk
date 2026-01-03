@@ -6,11 +6,11 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 22:36:12 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 23:22:32 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/03 11:23:57 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "minitalk.h"
 
 #include <signal.h>
 #include <unistd.h>
@@ -50,8 +50,6 @@ static void	client_send_bit(pid_t server_pid, int bit)
 
 	g_client_ack &= ~MT_ACK_BIT;
 	sig = signal_from_bit(bit);
-	if (sig == -1)
-		fatal("minitalk: invalid bit");
 	if (kill(server_pid, sig) == -1)
 		fatal("minitalk: failed to send signal");
 	while ((g_client_ack & MT_ACK_BIT) == 0)
