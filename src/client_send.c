@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:54:01 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 22:01:44 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/03 11:08:31 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	client_send_bit(pid_t server_pid, int bit)
 	int	sig;
 
 	sig = signal_from_bit(bit);
-	if (sig == -1)
-		fatal("minitalk: invalid bit");
 	if (kill(server_pid, sig) == -1)
 		fatal("minitalk: failed to send signal");
 	usleep(CLIENT_SEND_DELAY_US);

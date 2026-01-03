@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:48:24 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/02 21:49:27 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/03 11:21:35 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,14 @@ int	bit_from_signal(int sig)
 {
 	if (sig == SIGUSR1)
 		return (0);
-	if (sig == SIGUSR2)
-		return (1);
-	return (-1);
+	return (1);
 }
 
 int	signal_from_bit(int bit)
 {
 	if (bit == 0)
 		return (SIGUSR1);
-	if (bit == 1)
-		return (SIGUSR2);
-	return (-1);
+	return (SIGUSR2);
 }
 
 unsigned char	set_bit(unsigned char byte, int bit_index, int bit_value)
