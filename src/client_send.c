@@ -6,7 +6,7 @@
 /*   By: amtan <amtan@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 21:54:01 by amtan             #+#    #+#             */
-/*   Updated: 2026/01/03 11:08:31 by amtan            ###   ########.fr       */
+/*   Updated: 2026/01/08 18:12:56 by amtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-#define CLIENT_SEND_DELAY_US 800
+#define CLIENT_SEND_DELAY_US 400
 
 static void	client_send_bit(pid_t server_pid, int bit)
 {
